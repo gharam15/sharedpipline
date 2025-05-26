@@ -13,12 +13,22 @@ class PipelineUtils implements Serializable {
     }
 
     def buildPython(context) {
-        context.echo "Building Python project..."
-        context.sh 'pip install -r requirements.txt'
+        context.echo "Building Python project with virtual environment..."
+        context.sh '''
+            python3 -m venv venv
+            ./venv/bin/pip install --upgrade pip
+            ./venv/bin/pip install -r requirements.txt
+        '''
     }
 
     def testPython(context) {
-        context.echo "Testing Python project..."
-        context.sh 'pytest'
+        context.echo "Testing Python project inside virtual environment..."
+        context.sh '''
+            if [ -f pytest.ini ] || [ -d tests ]; then
+                ./venv/bin/pytest
+            else
+                echo "No tests found, skipping test stage."
+            fi
+        '''
     }
 }
