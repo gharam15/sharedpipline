@@ -1,3 +1,3 @@
-def call(string NAME){
+def infoip(string NAME){
     sh "echo \"Hello,${NAME}\""
 }
