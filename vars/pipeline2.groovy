@@ -4,14 +4,13 @@ def call() {
 
         environment {
             IMAGE_NAME = 'gharam/python-task'
-        }  
+        }
 
         stages {
             stage('Build & Dockerize') {
                 steps {
                     echo 'Building Docker image for Python app...'
                     sh 'docker build -t haneentharwat/jenkins .'
-
                 }
             }
 
@@ -22,5 +21,5 @@ def call() {
                 }
             }
         }
-    }  
+    }
 }
