@@ -16,7 +16,11 @@ def call() {
                         sh '''
                             python3 -m venv venv
                             ./venv/bin/pip install --upgrade pip
-                            ./venv/bin/pip install -r requirements.txt
+                            if [ -f requirements.txt ]; then
+                              ./venv/bin/pip install -r requirements.txt
+                            else
+                              echo "requirements.txt not found, skipping install."
+                            fi
                         '''
                     }
                 }
@@ -41,7 +45,6 @@ def call() {
         post {
             always {
                 echo 'Cleaning up...'
-                sh 'deactivate || true'  // just in case
                 sh 'rm -rf venv'
             }
             success {
