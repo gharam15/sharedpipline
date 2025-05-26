@@ -1,4 +1,6 @@
-def call(String imageName) {
-    echo 'Building Python Docker image...'
-    sh "docker build -t ${imageName} ."
+def call() {
+    stage('Build Python App') {
+        echo "Building Python App"
+        sh 'python3 setup.py install'  // أو أي أمر بناء بايثون عندك
+    }
 }
