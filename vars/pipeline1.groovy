@@ -1,10 +1,11 @@
 def call() {
     pipeline {
-        agent any
+        agent { 
+        label 'java' 
+       }
 
         environment {
-            XYZ = 'ITI ITI ITI'
-            IMAGE_NAME = 'gharam/python-task'
+            IMAGE_NAME = 'gharam/java2'
         }
 
        stages {
