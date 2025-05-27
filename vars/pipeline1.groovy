@@ -16,12 +16,6 @@ def call() {
             }
         }
 
-            stage('Push Docker Image') {
-                steps {
-                    echo 'Pushing Docker image to DockerHub'
-                    pushDockerImage(env.IMAGE_NAME)
-                }
-            }
         }
     }
 }
